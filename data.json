@@ -1,0 +1,23 @@
+{
+    "solver_params": {
+        "tol": 1e-6,
+        "max_iter": 1000,
+        "rho_hat": 0.5,
+        "g0": 0.0,
+        "g1": 1.0
+    },
+    "discretization": {
+        "n_values": [16, 32, 64],
+        "n_exact_points": 50
+    },
+    "output": {
+        "base_filename": "output/sol_n_",
+        "extension": ".dat"
+    },
+    "plot": {
+        "title": "Solutions for different n",
+        "line_width": 2,
+        "point_type": 7,
+        "point_size": 1.5
+    }
+}

@@ -54,6 +54,16 @@ distclean: clean
 	$(RM) main main_test
 	$(RM) *.csv *.out *.bak *~
 
+# Create output directory
+$(shell mkdir -p output)
+
+# Clean up everything including executables and output files
+distclean: clean
+	$(RM) main main_test
+	$(RM) *.csv *.out *.bak *~ *.txt
+	$(RM) -r output/*
+	$(RM) *.dat
+
 # Generate dependencies
 $(DEPEND): $(COMMON_SRCS)
 	@$(RM) $(DEPEND)

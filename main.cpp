@@ -1,4 +1,5 @@
-#include "AugmentedLagrangian.hpp"
+// #include "AugmentedLagrangian.hpp"
+#include "MethodOfMultipliers.hpp"
 #include <fstream>
 
 void write_solution(const std::string& file_name, const SolutionType& sol){
@@ -26,15 +27,7 @@ int main(){
     double tol = 1e-5;
     int max_iter = 100;
 
-    // Parameters param;
-    // param.g0 = 0;
-    // param.g1 = 1;
-    // param.f = 1;
-    // param.rho_hat = 0.5;
-    // size_t n = 16;
-
     MultipliersMethod mm(A, B, g, d, rho, linearSystemSolverType::ColPivHouseholderQR);
-    // MultipliersMethod mm(param, n, linearSystemSolverType::ColPivHouseholderQR);
 
     SolutionType sol = mm.solve(tol, max_iter);
 

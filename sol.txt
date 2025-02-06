@@ -1,7 +1,0 @@
-Number of iterations: 5
-
-Convergence criterion: 1.13732e-06
-
-Result: 
-0.189189
-0.189189

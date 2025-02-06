@@ -1,12 +1,34 @@
+/**
+ * @file MethodOfMultipliers.hpp
+ * @brief Implementation of the Method of Multipliers (Augmented Lagrangian method)
+ * @details Provides solution methods for both quadratic and differential problems using
+ *          the method of multipliers optimization approach.
+ */
+
 #ifndef METHODOFMULTIPLIERS_HPP
 #define METHODOFMULTIPLIERS_HPP
 
 #include "QuadraticSolver.hpp"
 #include "DifferentialProblemSolver.hpp"
 
-class MultipliersMethod{
-
-    public:  
+/**
+ * @class MultipliersMethod
+ * @brief Implements the method of multipliers optimization algorithm
+ * 
+ * @details This class provides a unified interface for solving constrained optimization
+ *          problems using either QuadraticSolver or DifferentialProblemSolver.
+ */
+class MultipliersMethod {
+public:  
+    /**
+     * @brief Constructor for quadratic programming problems
+     * @param A System matrix for quadratic term
+     * @param B Constraint matrix
+     * @param g Linear term vector
+     * @param d_vec Right-hand side vector for constraints
+     * @param rho Penalty parameter
+     * @param linear_sys_solver Type of linear system solver to use
+     */
     MultipliersMethod(MatrixXd A, MatrixXd B, VectorXd g, VectorXd d_vec, double rho, 
                       linearSystemSolverType const& linear_sys_solver = linearSystemSolverType::FullPivLU): m(A.rows()), n(A.cols()), d(B.rows()){
         
@@ -22,10 +44,11 @@ class MultipliersMethod{
 
     SolutionType solve(double tol, int max_iter);
     
-    private:
-    std::unique_ptr<BaseSolver> solver;
-    // std::unique_ptr<DifferentialProblemSolver> solver;
-    int m, n, d;
+private:
+    std::unique_ptr<BaseSolver> solver;  ///< Pointer to solver implementation
+    int m;                               ///< Number of constraints
+    int n;                               ///< Problem dimension
+    int d;                               ///< Degrees of freedom
 };
 
 #endif //METHODOFMULTIPLIERS_HPP
